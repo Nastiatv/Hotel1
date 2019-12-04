@@ -29,21 +29,24 @@ public class Service {
 		this.name = name;
 	}
 	
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
 	public Service(int id, int dailyPrice, Status status , String name) {
 		this.id=id;
 		this.dailyPrice=dailyPrice;
 		this.status=status;
 		this.name=name;
+		}
 	
-		
-		
-	}
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+	public Service() {}
+	
+	
 	
 	
 }

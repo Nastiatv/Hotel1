@@ -17,7 +17,6 @@ public class Room {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	
 	public int getCapacity() {
 		return capacity;
@@ -59,5 +58,7 @@ public class Room {
 		this.status = status;
 
 	}
+	
+	public Room() {}
 
 }

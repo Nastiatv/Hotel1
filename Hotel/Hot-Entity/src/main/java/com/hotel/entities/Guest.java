@@ -7,11 +7,11 @@ import java.util.List;
 public class Guest {
 
 	private int id;
-	private int numberOfGuests;
+	private int numberOfGuests;///////
 	private boolean NonSmoking;
 	private LocalDate arrivalDate;
 	private LocalDate departureDate;
-	private List<Service> services = new ArrayList<Service>();
+	private List<Service> services = new ArrayList<>();
 	private int idRoom;
 	private int fee;
 	
@@ -23,6 +23,8 @@ public class Guest {
 		this.arrivalDate=arrivalDate;
 		this.departureDate=departureDate;
 		}
+	
+	public Guest() {}
 	
 	public LocalDate getDepartureDate() {
 		return departureDate;
@@ -54,25 +56,6 @@ public class Guest {
 
 	public void setServices(List<Service> services) {
 		this.services = services;
-	}
-	public void setService(Service service) {
-		List<Service> serviceList =new ArrayList<>();
-		serviceList.add(service);
-		this.services=serviceList;
-	}
-	
-	public void setService(Service service,Service service1) {
-		List<Service> serviceList =new ArrayList<>();
-		serviceList.add(service);
-		serviceList.add(service1);
-		this.services=serviceList;
-	}
-	public void setService(Service service, Service service1, Service service2) {
-		List<Service> serviceList =new ArrayList<>();
-		serviceList.add(service);
-		serviceList.add(service1);
-		serviceList.add(service2);
-		this.services=serviceList;
 	}
 	
 	public int getNumberOfGuests() {

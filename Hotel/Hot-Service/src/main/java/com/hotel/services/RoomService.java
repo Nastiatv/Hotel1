@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.hotel.api.dao.IRoomDao;
-import com.hotel.api.service.IServiceRoom;
+import com.hotel.api.service.IRoomService;
 import com.hotel.dao.RoomDao;
 import com.hotel.entities.Guest;
 import com.hotel.entities.Room;
 import com.hotel.entities.Service;
 import com.hotel.enums.Status;
 
-public class RoomService implements IServiceRoom {
+public class RoomService implements IRoomService {
 
 	IRoomDao daoRooms = new RoomDao();
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import com.hotel.entities.Guest;
 import com.hotel.entities.Room;
 
-public interface IServiceRoom {
+public interface IRoomService {
 
 	void addRoom(Room room);
 

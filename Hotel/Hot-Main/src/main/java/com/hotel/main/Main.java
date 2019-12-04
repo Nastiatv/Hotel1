@@ -55,16 +55,7 @@ public class Main {
 		roomManager.printRooms(roomManager.getAll());
 		guestManager.printGuests(guestManager.getAll());
 		
-		
-		
-		
-		guestManager.getGuest(0).setServices(serviceManager.getAll());
-		guestManager.getGuest(1).setService(serviceManager.getService(2));
-		guestManager.getGuest(2).setService(serviceManager.getService(3));
-		guestManager.getGuest(3).setService(serviceManager.getService(3), serviceManager.getService(2));
-		guestManager.getGuest(4).setService(serviceManager.getService(3), serviceManager.getService(1));
-		guestManager.getGuest(5).setService(serviceManager.getService(3), serviceManager.getService(1));
-		guestManager.printGuests(guestManager.getAll());
+
 		
 		roomManager.checkOutGuestFromRoom(guestManager.getGuest(0), roomManager.getRoom(0));
 		roomManager.checkOutGuestFromRoom(guestManager.getGuest(1), roomManager.getRoom(1));

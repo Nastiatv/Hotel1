@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.hotel.api.dao.IGuestDao;
-import com.hotel.api.service.IServiceGuest;
+import com.hotel.api.service.IGuestService;
 import com.hotel.dao.GuestDao;
 import com.hotel.entities.Guest;
 
 
-public class GuestService implements IServiceGuest {
+public class GuestService implements IGuestService {
 
 	IGuestDao daoGuests = new GuestDao();
 

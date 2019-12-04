@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hotel.entities.Guest;
 
-public interface IServiceGuest {
+public interface IGuestService {
 
 	void addGuest(Guest guest);
 
