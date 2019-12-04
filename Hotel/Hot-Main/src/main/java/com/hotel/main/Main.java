@@ -1,7 +1,5 @@
 package com.hotel.main;
 
-import java.time.LocalDate;
-
 import com.hotel.entities.Guest;
 import com.hotel.entities.Room;
 import com.hotel.entities.Service;
