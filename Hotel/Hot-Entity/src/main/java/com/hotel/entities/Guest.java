@@ -15,6 +15,7 @@ public class Guest {
 	private int idRoom;
 	private int fee;
 	
+	
 	public Guest(int id, int numberOfGuests, boolean NonSmoking, LocalDate arrivalDate, LocalDate departureDate) {
 		this.id = id;
 		this.numberOfGuests = numberOfGuests;

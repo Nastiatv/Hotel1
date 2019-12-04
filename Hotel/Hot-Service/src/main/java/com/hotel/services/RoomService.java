@@ -76,16 +76,17 @@ public class RoomService implements IServiceRoom {
 	}
 	public void checkOutGuestFromRoom(Guest guest,Room room) {
 		room.setStatus(Status.SERVICE );
-		daoGuest.getGuestFromList(guest.getId());//////
+		countFee(guest);
+		room.setStatus(Status.FREE );
 	}
-	
-	private int countFee(Guest guest) {
+		
+	private void countFee(Guest guest) {
 		LocalDate startDate = guest.getArrivalDate();
 		LocalDate endDate = guest.getDepartureDate();
 		int daysinhotel = Period.between(startDate, endDate).getDays();
 		int dailyForRoom=daoRooms.getRoomfromList(guest.getIdRoom()).getDailyPrice();
 		int sum=daysinhotel*dailyForRoom;
-		return sum;
+		System.out.println("Amount payable: "+sum);;
 	}
 
 	private List<Integer> getAllRoomsId() {
