@@ -36,12 +36,12 @@ public class Main {
 		serviceManager.printServices(serviceManager.getAll());
 		
 		
-		guestManager.addGuest(new Guest(0, 1, false, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 01, 02)));
-		guestManager.addGuest(new Guest(1, 1, true, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 01, 02)));
-		guestManager.addGuest(new Guest(2, 2, true, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 01, 02)));
-		guestManager.addGuest(new Guest(3, 2, true, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 01, 02)));
-		guestManager.addGuest(new Guest(4, 3, true, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 01, 02)));
-		guestManager.addGuest(new Guest(5, 4, true, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 01, 02)));
+		guestManager.addGuest(new Guest(0, false));
+		guestManager.addGuest(new Guest(1, true));
+		guestManager.addGuest(new Guest(2, true));
+		guestManager.addGuest(new Guest(3, true));
+		guestManager.addGuest(new Guest(4, true));
+		guestManager.addGuest(new Guest(5, true));
 		guestManager.printGuests(guestManager.getAll());
 		
 		

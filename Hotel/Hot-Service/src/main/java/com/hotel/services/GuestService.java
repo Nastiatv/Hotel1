@@ -54,15 +54,9 @@ public class GuestService implements IGuestService {
 			sb.append("Guest Pasport Number: ");
 			sb.append(guest.getId());
 			sb.append("; Number Of Guests: ");
-			sb.append(guest.getNumberOfGuests());
-			sb.append("; Room : ");
 			sb.append(guest.getIdRoom());
 			sb.append("; Is NonSmoking: ");
-			sb.append(guest.isNonSmoking());
-			sb.append("; Arrival Date : ");
-			sb.append(guest.getArrivalDate());
-			sb.append("; Departure Date : ");
-			sb.append(guest.getDepartureDate());
+			sb.append(guest.getisNonSmoking());
 			sb.append("; Services : ");
 			sb.append(guest.getService().toString());
 			System.out.println(sb);
