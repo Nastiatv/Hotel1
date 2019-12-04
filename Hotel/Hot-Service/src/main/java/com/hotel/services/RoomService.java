@@ -5,19 +5,18 @@ import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.hotel.api.dao.IGuestDao;
 import com.hotel.api.dao.IRoomDao;
 import com.hotel.api.service.IServiceRoom;
-import com.hotel.dao.GuestDao;
 import com.hotel.dao.RoomDao;
 import com.hotel.entities.Guest;
 import com.hotel.entities.Room;
+import com.hotel.entities.Service;
 import com.hotel.enums.Status;
 
 public class RoomService implements IServiceRoom {
 
 	IRoomDao daoRooms = new RoomDao();
-	IGuestDao daoGuest =new GuestDao();
+	
 	
 	@Override
 	public void addRoom(Room room) {
@@ -80,6 +79,10 @@ public class RoomService implements IServiceRoom {
 		room.setStatus(Status.FREE );
 	}
 		
+	public void orderService(Room room, Service service, LocalDate start, LocalDate finish) {
+		
+	}
+	
 	private void countFee(Guest guest) {
 		LocalDate startDate = guest.getArrivalDate();
 		LocalDate endDate = guest.getDepartureDate();
@@ -87,6 +90,12 @@ public class RoomService implements IServiceRoom {
 		int dailyForRoom=daoRooms.getRoomfromList(guest.getIdRoom()).getDailyPrice();
 		int sum=daysinhotel*dailyForRoom;
 		System.out.println("Amount payable: "+sum);;
+		
+		
+		
+		
+		
+		
 	}
 
 	private List<Integer> getAllRoomsId() {

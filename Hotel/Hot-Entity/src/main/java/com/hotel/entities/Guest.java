@@ -55,7 +55,26 @@ public class Guest {
 	public void setServices(List<Service> services) {
 		this.services = services;
 	}
-
+	public void setService(Service service) {
+		List<Service> serviceList =new ArrayList<>();
+		serviceList.add(service);
+		this.services=serviceList;
+	}
+	
+	public void setService(Service service,Service service1) {
+		List<Service> serviceList =new ArrayList<>();
+		serviceList.add(service);
+		serviceList.add(service1);
+		this.services=serviceList;
+	}
+	public void setService(Service service, Service service1, Service service2) {
+		List<Service> serviceList =new ArrayList<>();
+		serviceList.add(service);
+		serviceList.add(service1);
+		serviceList.add(service2);
+		this.services=serviceList;
+	}
+	
 	public int getNumberOfGuests() {
 		return numberOfGuests;
 	}
