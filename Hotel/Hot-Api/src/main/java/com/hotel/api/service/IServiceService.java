@@ -14,6 +14,4 @@ public interface IServiceService {
 
 	List<Service> getAll();
 
-	void printServices(List<Service> services);
-
 }

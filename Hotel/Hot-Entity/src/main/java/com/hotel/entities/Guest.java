@@ -1,25 +1,25 @@
 package com.hotel.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Guest {
 
 	private int id;
-	private boolean NonSmoking;
-	private List<Service> services = new ArrayList<>();
-	private int idRoom;
-	private int fee;
+	private RoomHistory history;
 	
 	
-	public Guest(int id, boolean NonSmoking) {
+	public Guest(int id) {
 		this.id = id;
-		this.NonSmoking = NonSmoking;
-
 		}
 	
 	public Guest() {}
 	
+	public RoomHistory getHistory() {
+		return history;
+	}
+
+	public void setHistory(RoomHistory history) {
+		this.history = history;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -28,35 +28,19 @@ public class Guest {
 		this.id = id;
 	}
 	
-	public List<Service> getService() {
-		return services;
-	}
-
-	public void setServices(List<Service> services) {
-		this.services = services;
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Guest Pasport Number: ");
+		sb.append(id);
+		sb.append("; Room history : ");
+		sb.append(history);
+		System.out.println(sb);
+		return sb.toString();
 	}
 	
-	public boolean getisNonSmoking() {
-		return NonSmoking;
-	}
-
-	public void setNonSmoking(boolean nonSmoking) {
-		NonSmoking = nonSmoking;
-	}
-
-	public int getIdRoom() {
-		return idRoom;
-	}
-
-	public void setIdRoom(int idRoom) {
-		this.idRoom = idRoom;
-	}
-
-	public int getFee() {
-		return fee;
-	}
-
-	public void setFee(int fee) {
-		this.fee = fee;
-	}
+	
+	
+	
+	
 }

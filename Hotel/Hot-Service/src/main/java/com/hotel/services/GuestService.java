@@ -46,24 +46,7 @@ public class GuestService implements IGuestService {
 		return daoGuests.getAllListGuests();
 	}
 
-	@Override
-	public void printGuests(List<Guest> guests) {
-		System.out.println("Here's the information about needed guests in our hotel:");
-		for (Guest guest : guests) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("Guest Pasport Number: ");
-			sb.append(guest.getId());
-			sb.append("; Number Of Guests: ");
-			sb.append(guest.getIdRoom());
-			sb.append("; Is NonSmoking: ");
-			sb.append(guest.getisNonSmoking());
-			sb.append("; Services : ");
-			sb.append(guest.getService().toString());
-			System.out.println(sb);
-		}
-	}
-	
-	private List<Integer> getAllGuestId() {
+		private List<Integer> getAllGuestId() {
 		List<Integer> getAllGuestId = daoGuests.getAllListGuests().stream().map(y -> y.getId())
 				.collect(Collectors.toList());
 		return getAllGuestId;

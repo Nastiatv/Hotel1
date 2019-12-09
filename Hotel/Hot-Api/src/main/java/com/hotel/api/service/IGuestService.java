@@ -14,6 +14,4 @@ public interface IGuestService {
 
 	List<Guest> getAll();
 
-	void printGuests(List<Guest> guest);
-
-}
+	}

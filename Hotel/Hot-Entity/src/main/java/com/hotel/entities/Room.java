@@ -7,9 +7,9 @@ public class Room {
 	private int id;
 	private int capacity;
 	private int dailyPrice;
-	private boolean NonSmoking;
 	private Status status;
-	
+	private RoomHistory history;
+
 	public int getId() {
 		return id;
 	}
@@ -17,7 +17,7 @@ public class Room {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public int getCapacity() {
 		return capacity;
 	}
@@ -34,10 +34,6 @@ public class Room {
 		this.dailyPrice = dailyPrice;
 	}
 
-	public boolean isNonSmoking() {
-		return NonSmoking;
-	}
-
 	public Status getStatus() {
 		return status;
 	}
@@ -46,19 +42,37 @@ public class Room {
 		this.status = status;
 	}
 
-	public void setNonSmoking(boolean nonSmoking) {
-		NonSmoking = nonSmoking;
-	}	
+	public RoomHistory getHistory() {
+		return history;
+	}
 
-	public Room(int id, int capacity, int dailyPrice, boolean NonSmoking, Status status ) {
-		this.id=id;
+	public void setHistory(RoomHistory history) {
+		this.history = history;
+	}
+
+	public Room(int id, int capacity, int dailyPrice, Status status) {
+		this.id = id;
 		this.capacity = capacity;
 		this.dailyPrice = dailyPrice;
-		this.NonSmoking = NonSmoking;
 		this.status = status;
-
 	}
-	
-	public Room() {}
+
+	public Room() {
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Room Number: ");
+		sb.append(id);
+		sb.append(" Capacity: ");
+		sb.append(capacity);
+		sb.append(" Daily price: ");
+		sb.append(dailyPrice);
+		sb.append(" Status: ");
+		sb.append(status);
+		System.out.println(sb);
+		return sb.toString();
+	}
 
 }
