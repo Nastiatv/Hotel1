@@ -89,24 +89,18 @@ public class RoomHistory {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		if (status == Status.OCCUPIED) {
 			sb.append("Room id: ");
 			sb.append(room.getId());
 			sb.append(" Guest id: ");
 			sb.append(guest.getId());
-			sb.append(". arrivalDate: ");
+			sb.append(". checkInDate: ");
 			sb.append(checkInDate);
-			sb.append(". departureDate: ");
+			sb.append(". checkOutDate: ");
 			sb.append(checkOutDate);
 			sb.append(". Services: ");
 			sb.append(checkOutDate);
 			System.out.println(sb);
 			return sb.toString();
-		} else {
-			sb.append("RoomHistory id: ");
-			sb.append(id);
-			System.out.println(sb);
-			return sb.toString();
-		}
+		
 	}
 }
