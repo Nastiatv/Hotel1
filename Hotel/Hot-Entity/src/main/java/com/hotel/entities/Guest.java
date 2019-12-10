@@ -3,21 +3,12 @@ package com.hotel.entities;
 public class Guest {
 
 	private int id;
-	private RoomHistory history;
 
 	public Guest(int id) {
 		this.id = id;
 	}
 
 	public Guest() {
-	}
-
-	public RoomHistory getHistory() {
-		return history;
-	}
-
-	public void setHistory(RoomHistory history) {
-		this.history = history;
 	}
 
 	public int getId() {
@@ -31,18 +22,9 @@ public class Guest {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		if (history == null) {
-			sb.append("Guest Pasport Number: ");
-			sb.append(id);
-			sb.append("; Room history : ");
-			sb.append(history);
-			System.out.println(sb);
-			return sb.toString();
-		} else {
-			StringBuilder s = new StringBuilder();
-			s.append(history);
-			return s.toString();
-		}
+		sb.append("Guest Pasport Number: ");
+		sb.append(id);
+		System.out.println(sb);
+		return sb.toString();
 	}
-
 }

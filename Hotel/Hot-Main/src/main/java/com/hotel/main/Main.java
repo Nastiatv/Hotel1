@@ -50,20 +50,19 @@ public class Main {
 		RoomHistoryManager.checkIn(5, roomManager.getRoom(5), guestManager.getGuest(5), LocalDate.of(2019, 12, 31));
 		RoomHistoryManager.getAll().toString();
 		
-		RoomHistoryManager.orderService(0, roomManager.getRoom(0), LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.orderService(1, roomManager.getRoom(1), LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.orderService(2, roomManager.getRoom(2), LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.orderService(3, roomManager.getRoom(3), LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.orderService(2, roomManager.getRoom(4), LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.orderService(2, roomManager.getRoom(5), LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.orderService(0, 0, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.orderService(1, 1, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.orderService(2, 2, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.orderService(3, 3, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.orderService(2, 4, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.orderService(2, 5, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
 		
-		
-		RoomHistoryManager.checkOut(roomManager.getRoom(0), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.checkOut(roomManager.getRoom(1), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.checkOut(roomManager.getRoom(2), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.checkOut(roomManager.getRoom(3), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.checkOut(roomManager.getRoom(4), LocalDate.of(2020, 1, 2));
-		RoomHistoryManager.checkOut(roomManager.getRoom(5), LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(0, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(1, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(2, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(3, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(4, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(5, LocalDate.of(2020, 1, 2));
 		RoomHistoryManager.getAll().toString();
 		
 	

@@ -8,7 +8,6 @@ public class Room {
 	private int capacity;
 	private int dailyPrice;
 	private Status status;
-	private RoomHistory history;
 
 	public int getId() {
 		return id;
@@ -40,14 +39,6 @@ public class Room {
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	public RoomHistory getHistory() {
-		return history;
-	}
-
-	public void setHistory(RoomHistory history) {
-		this.history = history;
 	}
 
 	public Room(int id, int capacity, int dailyPrice, Status status) {

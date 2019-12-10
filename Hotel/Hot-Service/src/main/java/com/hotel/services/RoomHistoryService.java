@@ -1,6 +1,5 @@
 package com.hotel.services;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,25 +65,23 @@ public class RoomHistoryService implements IRoomHistoryService {
 		daoHistory.addRoomHistory(new RoomHistory(idHistory, room, guest, checkInDate));
 		daoHistory.getRoomHistory(idHistory).setStatus(Status.OCCUPIED);
 		room.setStatus(Status.OCCUPIED);
-		daoHistory.getRoomHistory(idHistory).getRoom().setHistory(daoHistory.getRoomHistory(idHistory));
-		daoHistory.getRoomHistory(idHistory).getGuest().setHistory(daoHistory.getRoomHistory(idHistory));
 	}
 
-	public void checkOut(Room room, LocalDate checkOutDate) {
-		room.getHistory().setCheckOutDate(checkOutDate);
-		room.getHistory().setStatus(Status.FREE);
-		room.setStatus(Status.FREE);
+	public void checkOut(int idHistory, LocalDate checkOutDate) {
+		daoHistory.getRoomHistory(idHistory).setCheckOutDate(checkOutDate);
+		daoHistory.getRoomHistory(idHistory).setStatus(Status.FREE);
+		daoHistory.getRoomHistory(idHistory).getRoom().setStatus(Status.FREE);
 	}
 
-	public void orderService(int idService, Room room, LocalDate start, LocalDate end) {
-		if (daoHistory.getRoomHistory(room.getHistory().getId()).getServices() == null) {
+	public void orderService(int idService, int idHistory, LocalDate start, LocalDate end) {
+		if (daoHistory.getRoomHistory(idHistory).getServices() == null) {
 			List<Service> listserv = new ArrayList<>();
 			listserv.add(daoService.getServicefromList(idService));;
-			daoHistory.getRoomHistory(room.getId()).setServices(listserv);
+			daoHistory.getRoomHistory(idHistory).setServices(listserv);
 		} else {
-			List<Service> listserv = daoHistory.getRoomHistory(room.getHistory().getId()).getServices();
+			List<Service> listserv = daoHistory.getRoomHistory(idHistory).getServices();
 			listserv.add(daoService.getServicefromList(idService));
-			daoHistory.getRoomHistory(room.getId()).setServices(listserv);
+			daoHistory.getRoomHistory(idHistory).setServices(listserv);
 		}
 	}
 
@@ -92,5 +89,5 @@ public class RoomHistoryService implements IRoomHistoryService {
 		List<Integer> getAllHistoryId = daoHistory.getAllRoomHistories().stream().map(y -> y.getId())
 				.collect(Collectors.toList());
 		return getAllHistoryId;
+		}
 	}
-}
