@@ -12,4 +12,6 @@ public interface IRoomHistoryService {
 
 	void deleteRoomHistory(int id);
 
+	void addRoomHistory(RoomHistory roomHistory);
+
 }

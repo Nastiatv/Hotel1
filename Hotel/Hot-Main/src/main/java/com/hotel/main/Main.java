@@ -1,8 +1,9 @@
 package com.hotel.main;
 
+import java.time.LocalDate;
+
 import com.hotel.entities.Guest;
 import com.hotel.entities.Room;
-import com.hotel.entities.RoomHistory;
 import com.hotel.entities.Service;
 import com.hotel.enums.Status;
 import com.hotel.services.GuestService;
@@ -17,7 +18,7 @@ public class Main {
 		ServiceService serviceManager = new ServiceService();
 		GuestService guestManager = new GuestService();
 		RoomService roomManager = new RoomService();
-		RoomHistoryService RoomHistoryManager=new RoomHistoryService();
+		RoomHistoryService RoomHistoryManager = new RoomHistoryService();
 
 		roomManager.addRoom(new Room(0, 1, 50, Status.FREE));
 		roomManager.addRoom(new Room(1, 1, 50, Status.FREE));
@@ -41,14 +42,22 @@ public class Main {
 		guestManager.addGuest(new Guest(5));
 		guestManager.getAll().toString();
 
-		RoomHistoryManager.addRoomHistory(new RoomHistory(0));
-		RoomHistoryManager.addRoomHistory(new RoomHistory(1));
-		RoomHistoryManager.addRoomHistory(new RoomHistory(2));
-		RoomHistoryManager.addRoomHistory(new RoomHistory(3));
-		RoomHistoryManager.addRoomHistory(new RoomHistory(4));
-		RoomHistoryManager.addRoomHistory(new RoomHistory(5));
+		RoomHistoryManager.checkIn(0, roomManager.getRoom(0), guestManager.getGuest(0), LocalDate.of(2019, 12, 31));
+		RoomHistoryManager.checkIn(1, roomManager.getRoom(1), guestManager.getGuest(1), LocalDate.of(2019, 12, 31));
+		RoomHistoryManager.checkIn(2, roomManager.getRoom(2), guestManager.getGuest(2), LocalDate.of(2019, 12, 31));
+		RoomHistoryManager.checkIn(3, roomManager.getRoom(3), guestManager.getGuest(3), LocalDate.of(2019, 12, 31));
+		RoomHistoryManager.checkIn(4, roomManager.getRoom(4), guestManager.getGuest(4), LocalDate.of(2019, 12, 31));
+		RoomHistoryManager.checkIn(5, roomManager.getRoom(5), guestManager.getGuest(5), LocalDate.of(2019, 12, 31));
 		RoomHistoryManager.getAll().toString();
-		
+				
+		RoomHistoryManager.checkOut(0, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(1, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(2, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(3, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(4, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.checkOut(5, LocalDate.of(2020, 1, 2));
+		RoomHistoryManager.getAll().toString();
+		guestManager.getAll().toString();
 	
 	}
 

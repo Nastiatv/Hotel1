@@ -21,7 +21,7 @@ public class RoomHistoryDao implements IRoomHistoryDao {
 	}
 	
 	@Override
-	public void addHistory(RoomHistory roomHistory) {
+	public void addRoomHistory(RoomHistory roomHistory) {
 		RoomHistories.add(roomHistory);
 	}
 

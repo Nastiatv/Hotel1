@@ -10,7 +10,7 @@ public interface IRoomHistoryDao {
 
 	List<RoomHistory> getAllRoomHistories();
 
-	void addHistory(RoomHistory roomHistory);
+	void addRoomHistory(RoomHistory roomHistory);
 
 	void deleteRoomHistory(int id);
 

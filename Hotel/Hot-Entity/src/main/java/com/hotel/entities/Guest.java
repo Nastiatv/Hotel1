@@ -4,14 +4,14 @@ public class Guest {
 
 	private int id;
 	private RoomHistory history;
-	
-	
+
 	public Guest(int id) {
 		this.id = id;
-		}
-	
-	public Guest() {}
-	
+	}
+
+	public Guest() {
+	}
+
 	public RoomHistory getHistory() {
 		return history;
 	}
@@ -27,20 +27,22 @@ public class Guest {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Guest Pasport Number: ");
-		sb.append(id);
-		sb.append("; Room history : ");
-		sb.append(history);
-		System.out.println(sb);
-		return sb.toString();
+		if (history == null) {
+			sb.append("Guest Pasport Number: ");
+			sb.append(id);
+			sb.append("; Room history : ");
+			sb.append(history);
+			System.out.println(sb);
+			return sb.toString();
+		} else {
+			StringBuilder s = new StringBuilder();
+			s.append(history);
+			return s.toString();
+		}
 	}
-	
-	
-	
-	
-	
+
 }

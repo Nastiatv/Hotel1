@@ -90,13 +90,13 @@ public class RoomHistory {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		if (status == Status.OCCUPIED) {
-			sb.append("Room id");
+			sb.append("Room id: ");
 			sb.append(room.getId());
-			sb.append(" Guest id");
+			sb.append(" Guest id: ");
 			sb.append(guest.getId());
-			sb.append(". arrivalDate");
+			sb.append(". arrivalDate: ");
 			sb.append(checkInDate);
-			sb.append(". departureDate ");
+			sb.append(". departureDate: ");
 			sb.append(checkOutDate);
 			sb.append(". Services: ");
 			sb.append(checkOutDate);
