@@ -22,15 +22,15 @@ import com.hotel.enums.Status;
 
 public class RoomHistoryService implements IRoomHistoryService {
 
-	IRoomHistoryDao daoHistory = new RoomHistoryDao();
-	IServiceDao daoService = new ServiceDao();
-	IRoomDao daoRoom = new RoomDao();
-	IGuestDao daoGuest = new GuestDao();
+	IRoomHistoryDao historyDao = new RoomHistoryDao();
+	IServiceDao serviceDao = new ServiceDao();
+	IRoomDao roomDao = new RoomDao();
+	IGuestDao guestDao = new GuestDao();
 
 	@Override
 	public void addRoomHistory(RoomHistory roomHistory) {
 		if (!getAllHistoryId().contains(roomHistory.getId())) {
-			daoHistory.addRoomHistory(roomHistory);
+			historyDao.addRoomHistory(roomHistory);
 		} else {
 			System.out.println("Such a history already exists");
 		}
@@ -39,7 +39,7 @@ public class RoomHistoryService implements IRoomHistoryService {
 	@Override
 	public RoomHistory getRoomHistory(int id) {
 		if (getAllHistoryId().contains(id)) {
-			return daoHistory.getRoomHistory(id);
+			return historyDao.getRoomHistory(id);
 		} else {
 			System.out.println("There are no such history");
 			return null;
@@ -49,7 +49,7 @@ public class RoomHistoryService implements IRoomHistoryService {
 	@Override
 	public void deleteRoomHistory(int id) {
 		if (getAllHistoryId().contains(id)) {
-			daoHistory.deleteRoomHistory(id);
+			historyDao.deleteRoomHistory(id);
 			;
 		} else {
 			System.out.println("There are no such history");
@@ -58,35 +58,36 @@ public class RoomHistoryService implements IRoomHistoryService {
 
 	@Override
 	public List<RoomHistory> getAll() {
-		return daoHistory.getAllRoomHistories();
+		return historyDao.getAllRoomHistories();
 	}
 
 	public void checkIn(int idHistory, Room room, Guest guest, LocalDate checkInDate) {
-		daoHistory.addRoomHistory(new RoomHistory(idHistory, room, guest, checkInDate));
-		daoHistory.getRoomHistory(idHistory).setStatus(Status.OCCUPIED);
+		historyDao.addRoomHistory(new RoomHistory(idHistory, room, guest, checkInDate));
+		historyDao.getRoomHistory(idHistory).setStatus(Status.OCCUPIED);
 		room.setStatus(Status.OCCUPIED);
 	}
 
 	public void checkOut(int idHistory, LocalDate checkOutDate) {
-		daoHistory.getRoomHistory(idHistory).setCheckOutDate(checkOutDate);
-		daoHistory.getRoomHistory(idHistory).setStatus(Status.FREE);
-		daoHistory.getRoomHistory(idHistory).getRoom().setStatus(Status.FREE);
+		historyDao.getRoomHistory(idHistory).setCheckOutDate(checkOutDate);
+		historyDao.getRoomHistory(idHistory).setStatus(Status.FREE);
+		historyDao.getRoomHistory(idHistory).getRoom().setStatus(Status.FREE);
 	}
 
 	public void orderService(int idService, int idHistory, LocalDate start, LocalDate end) {
-		if (daoHistory.getRoomHistory(idHistory).getServices() == null) {
+		if (historyDao.getRoomHistory(idHistory).getServices() == null) {
 			List<Service> listserv = new ArrayList<>();
-			listserv.add(daoService.getServicefromList(idService));;
-			daoHistory.getRoomHistory(idHistory).setServices(listserv);
+			serviceDao.getAllListService();
+			listserv.add(serviceDao.getServicefromList(idService));
+			historyDao.getRoomHistory(idHistory).setServices(listserv);
 		} else {
-			List<Service> listserv = daoHistory.getRoomHistory(idHistory).getServices();
-			listserv.add(daoService.getServicefromList(idService));
-			daoHistory.getRoomHistory(idHistory).setServices(listserv);
+			List<Service> listserv = historyDao.getRoomHistory(idHistory).getServices();
+			listserv.add(serviceDao.getServicefromList(idService));
+			historyDao.getRoomHistory(idHistory).setServices(listserv);
 		}
 	}
 
 	private List<Integer> getAllHistoryId() {
-		List<Integer> getAllHistoryId = daoHistory.getAllRoomHistories().stream().map(y -> y.getId())
+		List<Integer> getAllHistoryId = historyDao.getAllRoomHistories().stream().map(y -> y.getId())
 				.collect(Collectors.toList());
 		return getAllHistoryId;
 		}

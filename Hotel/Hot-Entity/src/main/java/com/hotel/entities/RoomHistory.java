@@ -98,7 +98,7 @@ public class RoomHistory {
 			sb.append(". checkOutDate: ");
 			sb.append(checkOutDate);
 			sb.append(". Services: ");
-			sb.append(checkOutDate);
+			sb.append(services);
 			System.out.println(sb);
 			return sb.toString();
 		
