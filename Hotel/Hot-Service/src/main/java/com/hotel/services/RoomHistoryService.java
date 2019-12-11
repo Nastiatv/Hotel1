@@ -68,9 +68,10 @@ public class RoomHistoryService implements IRoomHistoryService {
 	}
 
 	public void checkOut(int idHistory, LocalDate checkOutDate) {
-		historyDao.getRoomHistory(idHistory).setCheckOutDate(checkOutDate);
-		historyDao.getRoomHistory(idHistory).setStatus(Status.FREE);
-		historyDao.getRoomHistory(idHistory).getRoom().setStatus(Status.FREE);
+		RoomHistory rh=historyDao.getRoomHistory(idHistory);
+		rh.setCheckOutDate(checkOutDate);
+		rh.setStatus(Status.FREE);
+		rh.getRoom().setStatus(Status.FREE);
 	}
 
 	public void orderService(int idService, int idHistory, LocalDate start, LocalDate end) {
