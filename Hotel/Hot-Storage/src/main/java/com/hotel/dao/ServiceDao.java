@@ -8,25 +8,25 @@ import com.hotel.entities.Service;
 
 public class ServiceDao implements IServiceDao {
 
-	private List<Service> serviceInHotel = new ArrayList<>();
+	private List<Service> daoService = new ArrayList<>();
 
 	@Override
 	public void addServiceToList(Service service) {
-		serviceInHotel.add(service);
+		daoService.add(service);
 	}
 
 	@Override
 	public Service getServicefromList(int id) {
-		return serviceInHotel.get(id);
+		return daoService.get(id);
 	}
 
 	@Override
 	public void deleteServiceFromList(int id) {
-		serviceInHotel.remove(id);
+		daoService.remove(id);
 	}
 
 	@Override
 	public List<Service> getAllListService() {
-		return serviceInHotel;
+		return daoService;
 	}
 }
