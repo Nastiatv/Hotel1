@@ -22,7 +22,7 @@ public class Guest {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Guest Pasport Number: ");
+		sb.append("Guest Id: ");
 		sb.append(id);
 		System.out.println(sb);
 		return sb.toString();

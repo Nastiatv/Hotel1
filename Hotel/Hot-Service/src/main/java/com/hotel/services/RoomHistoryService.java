@@ -1,7 +1,9 @@
 package com.hotel.services;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,7 +70,7 @@ public class RoomHistoryService implements IRoomHistoryService {
 	}
 
 	public void checkOut(int idHistory, LocalDate checkOutDate) {
-		RoomHistory rh=historyDao.getRoomHistory(idHistory);
+		RoomHistory rh = historyDao.getRoomHistory(idHistory);
 		rh.setCheckOutDate(checkOutDate);
 		rh.setStatus(Status.FREE);
 		rh.getRoom().setStatus(Status.FREE);
@@ -87,9 +89,31 @@ public class RoomHistoryService implements IRoomHistoryService {
 		}
 	}
 
-	private List<Integer> getAllHistoryId() {
-		List<Integer> getAllHistoryId = historyDao.getAllRoomHistories().stream().map(y -> y.getId())
-				.collect(Collectors.toList());
-		return getAllHistoryId;
-		}
+	public int countFee(int idRoomHistory) {
+		return countRoomFee(idRoomHistory) + countServiceFee(idRoomHistory);
 	}
+
+	private int countServiceFee(int idRoomHistory, LocalDate start, LocalDate end) {
+		getDaysBetweenDates(start, end);
+		int serviceFee=;
+		return serviceFee;
+	}
+
+	private int countRoomFee(int idRoomHistory) {
+		return historyDao.getRoomHistory(idRoomHistory).getRoom().getDailyPrice() * getDaysOfStay(idRoomHistory);
+	}
+
+	private List<Integer> getAllHistoryId() {
+		return historyDao.getAllRoomHistories().stream().map(y -> y.getId()).collect(Collectors.toList());
+	}
+
+	private int getDaysBetweenDates(LocalDate start, LocalDate end) {
+		Period period = Period.between(start, end);
+		return period.getDays();
+	}
+
+	private int getDaysOfStay(int IdRoomHistory) {
+		RoomHistory rh = historyDao.getRoomHistory(IdRoomHistory);
+		return getDaysBetweenDates(rh.getCheckInDate(), rh.getCheckOutDate());
+	}
+}
