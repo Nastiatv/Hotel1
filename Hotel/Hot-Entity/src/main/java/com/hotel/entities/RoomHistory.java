@@ -14,6 +14,7 @@ public class RoomHistory {
 	private LocalDate checkOutDate;
 	private List<Service> services;
 	private Status status;
+	private int serviceFee;
 
 	
 	public RoomHistory() {
@@ -30,6 +31,14 @@ public class RoomHistory {
 		this.checkInDate=checkInDate;
 	}
 
+
+	public int getServiceFee() {
+		return serviceFee;
+	}
+
+	public void setServiceFee(int serviceFee) {
+		this.serviceFee = serviceFee;
+	}
 
 	public int getId() {
 		return id;

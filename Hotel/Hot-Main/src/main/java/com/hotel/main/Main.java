@@ -48,22 +48,21 @@ public class Main {
 		roomHistoryManager.checkIn(3, roomManager.getRoom(3), guestManager.getGuest(3), LocalDate.of(2019, 12, 31));
 		roomHistoryManager.checkIn(4, roomManager.getRoom(4), guestManager.getGuest(4), LocalDate.of(2019, 12, 31));
 		roomHistoryManager.checkIn(5, roomManager.getRoom(5), guestManager.getGuest(5), LocalDate.of(2019, 12, 31));
-		roomHistoryManager.getAll().toString();
-		
-		roomHistoryManager.orderService(0, 0, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		roomHistoryManager.orderService(1, 1, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		roomHistoryManager.orderService(2, 2, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		roomHistoryManager.orderService(3, 3, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		roomHistoryManager.orderService(2, 4, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		roomHistoryManager.orderService(2, 5, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
-		
+				
+//		roomHistoryManager.orderService(0, 0, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+//		roomHistoryManager.orderService(1, 1, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+//		roomHistoryManager.orderService(2, 2, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+//		roomHistoryManager.orderService(3, 3, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+//		roomHistoryManager.orderService(2, 4, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+//		roomHistoryManager.orderService(2, 5, LocalDate.of(2019, 12, 31), LocalDate.of(2020, 1, 2));
+//		
 		roomHistoryManager.checkOut(0, LocalDate.of(2020, 1, 2));
 		roomHistoryManager.checkOut(1, LocalDate.of(2020, 1, 2));
 		roomHistoryManager.checkOut(2, LocalDate.of(2020, 1, 2));
 		roomHistoryManager.checkOut(3, LocalDate.of(2020, 1, 2));
 		roomHistoryManager.checkOut(4, LocalDate.of(2020, 1, 2));
 		roomHistoryManager.checkOut(5, LocalDate.of(2020, 1, 2));
-		roomHistoryManager.getAll().toString();
+	
 		
 	
 		

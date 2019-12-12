@@ -3,7 +3,6 @@ package com.hotel.services;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +66,7 @@ public class RoomHistoryService implements IRoomHistoryService {
 		historyDao.addRoomHistory(new RoomHistory(idHistory, room, guest, checkInDate));
 		historyDao.getRoomHistory(idHistory).setStatus(Status.OCCUPIED);
 		room.setStatus(Status.OCCUPIED);
+		System.out.println("The room "+room.getId()+" is occupied by the client "+guest.getId());
 	}
 
 	public void checkOut(int idHistory, LocalDate checkOutDate) {
@@ -74,6 +74,8 @@ public class RoomHistoryService implements IRoomHistoryService {
 		rh.setCheckOutDate(checkOutDate);
 		rh.setStatus(Status.FREE);
 		rh.getRoom().setStatus(Status.FREE);
+		System.out.println("The client "+rh.getGuest().getId()+" has left the room "+rh.getRoom().getId());
+		printFee(idHistory);
 	}
 
 	public void orderService(int idService, int idHistory, LocalDate start, LocalDate end) {
@@ -87,16 +89,24 @@ public class RoomHistoryService implements IRoomHistoryService {
 			listserv.add(serviceDao.getServicefromList(idService));
 			historyDao.getRoomHistory(idHistory).setServices(listserv);
 		}
+		updateServiceFee(idService, idHistory, start, end);
 	}
 
-	public int countFee(int idRoomHistory) {
-		return countRoomFee(idRoomHistory) + countServiceFee(idRoomHistory);
+	public void printFee(int idRoomHistory) {
+		System.out.println("Pay for accommodation: " + countRoomFee(idRoomHistory) + " and for service: "
+				+ historyDao.getRoomHistory(idRoomHistory).getServiceFee());
 	}
 
-	private int countServiceFee(int idRoomHistory, LocalDate start, LocalDate end) {
-		getDaysBetweenDates(start, end);
-		int serviceFee=;
-		return serviceFee;
+	private void updateServiceFee(int idService, int idRoomHistory, LocalDate start, LocalDate end) {
+		RoomHistory rh = historyDao.getRoomHistory(idRoomHistory);
+		if (rh.getServiceFee() == 0) {
+			int serviceFee = getDaysBetweenDates(start, end) * serviceDao.getServicefromList(idService).getDailyPrice();
+			rh.setServiceFee(serviceFee);
+		} else {
+			int extraServiceFee = getDaysBetweenDates(start, end)
+					* serviceDao.getServicefromList(idService).getDailyPrice();
+			rh.setServiceFee(rh.getServiceFee() + extraServiceFee);
+		}
 	}
 
 	private int countRoomFee(int idRoomHistory) {
