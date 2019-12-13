@@ -14,6 +14,8 @@ public interface IServiceDao {
 
 	List<Service> getAllListService();
 
+
+
 	}
 	
 

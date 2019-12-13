@@ -3,7 +3,6 @@ package com.hotel.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.hotel.api.dao.IGuestDao;
 import com.hotel.api.service.IGuestService;
 import com.hotel.dao.GuestDao;
 import com.hotel.entities.Guest;
@@ -11,12 +10,10 @@ import com.hotel.entities.Guest;
 
 public class GuestService implements IGuestService {
 
-	IGuestDao daoGuests = new GuestDao();
-
 	@Override
 	public void addGuest(Guest guest) {
 		if (!getAllGuestId().contains(guest.getId())) {
-			daoGuests.addGuestToList(guest);
+			GuestDao.getInstance().addGuestToList(guest);
 		} else {
 			System.out.println("Such a guest already exists");
 		}
@@ -25,7 +22,7 @@ public class GuestService implements IGuestService {
 	@Override
 	public Guest getGuest(int id) {
 		if (getAllGuestId().contains(id)) {
-			return daoGuests.getGuestFromList(id);
+			return GuestDao.getInstance().getGuestFromList(id);
 		} else {
 			System.out.println("There are no such guest");
 			return null;
@@ -35,7 +32,7 @@ public class GuestService implements IGuestService {
 	@Override
 	public void deleteGuest(int id) {
 		if (getAllGuestId().contains(id)) {
-			daoGuests.deleteGuestFromList(id);
+			GuestDao.getInstance().deleteGuestFromList(id);
 		} else {
 			System.out.println("There are no such guest");
 		}
@@ -43,11 +40,11 @@ public class GuestService implements IGuestService {
 
 	@Override
 	public List<Guest> getAll() {
-		return daoGuests.getAllListGuests();
+		return GuestDao.getInstance().getAllListGuests();
 	}
 
 		private List<Integer> getAllGuestId() {
-		List<Integer> getAllGuestId = daoGuests.getAllListGuests().stream().map(y -> y.getId())
+		List<Integer> getAllGuestId = GuestDao.getInstance().getAllListGuests().stream().map(y -> y.getId())
 				.collect(Collectors.toList());
 		return getAllGuestId;
 	}

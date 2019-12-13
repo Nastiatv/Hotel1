@@ -13,4 +13,6 @@ public interface IGuestDao {
 	Guest getGuestFromList(int id);
 
 	void addGuestToList(Guest guest);
+
+
 }
