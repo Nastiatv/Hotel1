@@ -9,6 +9,15 @@ import com.hotel.entities.Room;
 public class RoomDao implements IRoomDao {
 
 	private List<Room> RoomDao = new ArrayList<>();
+	
+	private static RoomDao roomsDao;
+
+	public static RoomDao getInstance() {
+		if (roomsDao == null) {
+			roomsDao = new RoomDao();
+		}
+		return roomsDao;
+	}
 
 	@Override
 	public void addRoomToList(Room room) {

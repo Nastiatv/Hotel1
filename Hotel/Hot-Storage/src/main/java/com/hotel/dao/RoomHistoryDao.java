@@ -8,26 +8,34 @@ import com.hotel.entities.RoomHistory;
 
 public class RoomHistoryDao implements IRoomHistoryDao {
 
-	private List<RoomHistory> RoomHistories = new ArrayList<>();
+	private List<RoomHistory> historyDao = new ArrayList<>();
+
+	private static RoomHistoryDao historiesDao;
+
+	public static RoomHistoryDao getInstance() {
+		if (historiesDao == null) {
+			historiesDao = new RoomHistoryDao();
+		}
+		return historiesDao;
+	}
 
 	@Override
 	public RoomHistory getRoomHistory(int id) {
-		return RoomHistories.get(id);
+		return historyDao.get(id);
 	}
 
 	@Override
 	public List<RoomHistory> getAllRoomHistories() {
-		return RoomHistories;
+		return historyDao;
 	}
-	
+
 	@Override
 	public void addRoomHistory(RoomHistory roomHistory) {
-		RoomHistories.add(roomHistory);
+		historyDao.add(roomHistory);
 	}
 
 	@Override
 	public void deleteRoomHistory(int id) {
-		RoomHistories.remove(id);
-		
+		historyDao.remove(id);
 	}
 }

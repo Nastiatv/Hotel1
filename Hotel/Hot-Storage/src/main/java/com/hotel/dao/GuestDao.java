@@ -10,6 +10,15 @@ public class GuestDao implements IGuestDao {
 
 	private List<Guest> guestInHotel = new ArrayList<>();
 
+	private static GuestDao guestDao;
+
+	public static GuestDao getInstance() {
+		if (guestDao == null) {
+			guestDao = new GuestDao();
+		}
+		return guestDao;
+	}
+
 	@Override
 	public void addGuestToList(Guest guest) {
 		guestInHotel.add(guest);

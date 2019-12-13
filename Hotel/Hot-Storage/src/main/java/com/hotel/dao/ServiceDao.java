@@ -8,7 +8,16 @@ import com.hotel.entities.Service;
 
 public class ServiceDao implements IServiceDao {
 
-	private List<Service> serviceDao = new ArrayList<>();
+	private static List<Service> serviceDao = new ArrayList<>();
+	
+	private static ServiceDao services;
+
+	public static ServiceDao getInstance() {
+		if (services == null) {
+			services =new ServiceDao();
+		}
+		return services;
+	}
 
 	@Override
 	public void addServiceToList(Service service) {

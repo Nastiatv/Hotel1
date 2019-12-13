@@ -81,7 +81,6 @@ public class RoomHistoryService implements IRoomHistoryService {
 	public void orderService(int idService, int idHistory, LocalDate start, LocalDate end) {
 		if (historyDao.getRoomHistory(idHistory).getServices() == null) {
 			List<Service> listserv = new ArrayList<>();
-			serviceDao.getAllListService();
 			listserv.add(serviceDao.getServicefromList(idService));
 			historyDao.getRoomHistory(idHistory).setServices(listserv);
 		} else {
