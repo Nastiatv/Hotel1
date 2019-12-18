@@ -3,6 +3,9 @@ package com.hotel.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hotel.api.service.IRoomService;
 import com.hotel.dao.RoomDao;
 import com.hotel.entities.Room;
@@ -10,13 +13,14 @@ import com.hotel.entities.Room;
 
 public class RoomService implements IRoomService {
 
+	private static final Logger logger =LoggerFactory.getLogger(RoomService.class);
 	
 	@Override
 	public void addRoom(Room room) {
 		if (!getAllRoomsId().contains(room.getId())) {
 			RoomDao.getInstance().addRoomToList(room);
 		} else {
-			System.out.println("Such a room already exists");
+			logger.info("Such a room already exists");
 		}
 	}
 
@@ -25,7 +29,7 @@ public class RoomService implements IRoomService {
 		if (getAllRoomsId().contains(id))
 			return RoomDao.getInstance().getRoomfromList(id);
 		else {
-			System.out.println("There are no such rooms");
+			logger.info("There are no such rooms");
 			return null;
 		}
 	}
@@ -35,7 +39,7 @@ public class RoomService implements IRoomService {
 		if (getAllRoomsId().contains(id)) {
 			RoomDao.getInstance().deleteRoomFromList(id);
 		} else {
-			System.out.println("There are no such rooms");
+			logger.info("There are no such rooms");
 		}
 	}
 
@@ -45,10 +49,7 @@ public class RoomService implements IRoomService {
 	}
 
 	private List<Integer> getAllRoomsId() {
-		List<Integer> getAllRoomsId = RoomDao.getInstance().getAllListRooms().stream().map(y -> y.getId())
+		return RoomDao.getInstance().getAllListRooms().stream().map(Room::getId)
 				.collect(Collectors.toList());
-		return getAllRoomsId;
-	}
-
-
+		}
 	}

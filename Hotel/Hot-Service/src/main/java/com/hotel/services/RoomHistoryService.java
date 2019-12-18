@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hotel.api.service.IRoomHistoryService;
 import com.hotel.dao.RoomHistoryDao;
 import com.hotel.dao.ServiceDao;
@@ -17,12 +20,15 @@ import com.hotel.enums.Status;
 
 public class RoomHistoryService implements IRoomHistoryService {
 
+	
+	private static final Logger logger =LoggerFactory.getLogger(RoomHistoryService.class);
+	
 	@Override
 	public void addRoomHistory(RoomHistory roomHistory) {
 		if (!getAllHistoryId().contains(roomHistory.getId())) {
 			RoomHistoryDao.getInstance().addRoomHistory(roomHistory);
 		} else {
-			System.out.println("Such a history already exists");
+			logger.info("Such a history already exists");
 		}
 	}
 
@@ -31,7 +37,7 @@ public class RoomHistoryService implements IRoomHistoryService {
 		if (getAllHistoryId().contains(id)) {
 			return RoomHistoryDao.getInstance().getRoomHistory(id);
 		} else {
-			System.out.println("There are no such history");
+			logger.info("There are no such history");
 			return null;
 		}
 	}
@@ -40,9 +46,8 @@ public class RoomHistoryService implements IRoomHistoryService {
 	public void deleteRoomHistory(int id) {
 		if (getAllHistoryId().contains(id)) {
 			RoomHistoryDao.getInstance().deleteRoomHistory(id);
-			;
 		} else {
-			System.out.println("There are no such history");
+			logger.info("There are no such history");
 		}
 	}
 
@@ -63,7 +68,8 @@ public class RoomHistoryService implements IRoomHistoryService {
 		rh.setCheckOutDate(checkOutDate);
 		rh.setStatus(Status.FREE);
 		rh.getRoom().setStatus(Status.FREE);
-		System.out.println("The client "+rh.getGuest().getId()+" has left the room "+rh.getRoom().getId());
+		logger.info("The client ",rh.getGuest().getId());
+		logger.info("has left the room ", rh.getRoom().getId());
 		printFee(idHistory);
 	}
 
@@ -81,8 +87,8 @@ public class RoomHistoryService implements IRoomHistoryService {
 	}
 
 	public void printFee(int idRoomHistory) {
-		System.out.println("Pay for accommodation: " + countRoomFee(idRoomHistory) + " and for service: "
-				+ RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory).getServiceFee());
+		logger.info(String.format("Pay for accommodation: ", countRoomFee(idRoomHistory)));
+		logger.info(String.format(" and for service: ", RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory).getServiceFee()));
 	}
 
 	private void updateServiceFee(int idService, int idRoomHistory, LocalDate start, LocalDate end) {
@@ -102,7 +108,7 @@ public class RoomHistoryService implements IRoomHistoryService {
 	}
 
 	private List<Integer> getAllHistoryId() {
-		return RoomHistoryDao.getInstance().getAllRoomHistories().stream().map(y -> y.getId()).collect(Collectors.toList());
+		return RoomHistoryDao.getInstance().getAllRoomHistories().stream().map(RoomHistory::getId).collect(Collectors.toList());
 	}
 
 	private int getDaysBetweenDates(LocalDate start, LocalDate end) {
@@ -110,8 +116,8 @@ public class RoomHistoryService implements IRoomHistoryService {
 		return period.getDays();
 	}
 
-	private int getDaysOfStay(int IdRoomHistory) {
-		RoomHistory rh = RoomHistoryDao.getInstance().getRoomHistory(IdRoomHistory);
+	private int getDaysOfStay(int idRoomHistory) {
+		RoomHistory rh = RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory);
 		return getDaysBetweenDates(rh.getCheckInDate(), rh.getCheckOutDate());
 	}
 }

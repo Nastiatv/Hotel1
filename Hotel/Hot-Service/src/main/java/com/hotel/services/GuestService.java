@@ -3,19 +3,23 @@ package com.hotel.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hotel.api.service.IGuestService;
 import com.hotel.dao.GuestDao;
 import com.hotel.entities.Guest;
 
-
 public class GuestService implements IGuestService {
-
+	
+	private static final Logger logger =LoggerFactory.getLogger(GuestService.class);
+	
 	@Override
 	public void addGuest(Guest guest) {
 		if (!getAllGuestId().contains(guest.getId())) {
 			GuestDao.getInstance().addGuestToList(guest);
 		} else {
-			System.out.println("Such a guest already exists");
+			logger.info("Such a guest already exists");
 		}
 	}
 
@@ -24,7 +28,7 @@ public class GuestService implements IGuestService {
 		if (getAllGuestId().contains(id)) {
 			return GuestDao.getInstance().getGuestFromList(id);
 		} else {
-			System.out.println("There are no such guest");
+			logger.info("There are no such guest");
 			return null;
 		}
 	}
@@ -34,8 +38,8 @@ public class GuestService implements IGuestService {
 		if (getAllGuestId().contains(id)) {
 			GuestDao.getInstance().deleteGuestFromList(id);
 		} else {
-			System.out.println("There are no such guest");
-		}
+			logger.info("There are no such guest");
+			}
 	}
 
 	@Override
@@ -43,9 +47,8 @@ public class GuestService implements IGuestService {
 		return GuestDao.getInstance().getAllListGuests();
 	}
 
-		private List<Integer> getAllGuestId() {
-		List<Integer> getAllGuestId = GuestDao.getInstance().getAllListGuests().stream().map(y -> y.getId())
-				.collect(Collectors.toList());
-		return getAllGuestId;
+	private List<Integer> getAllGuestId() {
+		return GuestDao.getInstance().getAllListGuests().stream().map(Guest::getId).collect(Collectors.toList());
+
 	}
 }

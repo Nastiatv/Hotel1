@@ -7,10 +7,29 @@
 	<artifactId>Hotel</artifactId>
 	<version>${project.version}</version>
 	<packaging>pom</packaging>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.version>0.0.1-SNAPSHOT</project.version>
+		<junit.version>4.12</junit.version>
+		<slf4j.version>1.7.25</slf4j.version>
 	</properties>
 
 	<build>
@@ -26,8 +45,15 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+
 	<modules>
 		<module>Hot-Api</module>
 		<module>Hot-Entity</module>
@@ -35,6 +61,6 @@
 		<module>Hot-Main</module>
 		<module>Hot-Storage</module>
 	</modules>
-	
-	
+
+
 </project>
