@@ -1,9 +1,14 @@
 package com.hotel.entities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hotel.enums.Status;
 
 public class Room {
 
+	private static final Logger logger =LoggerFactory.getLogger(Room.class);
+	
 	private int id;
 	private int capacity;
 	private int dailyPrice;
@@ -62,7 +67,8 @@ public class Room {
 		sb.append(dailyPrice);
 		sb.append(" Status: ");
 		sb.append(status);
-		System.out.println(sb);
+		String roomToString=sb.toString();
+		logger.info(roomToString);
 		return sb.toString();
 	}
 

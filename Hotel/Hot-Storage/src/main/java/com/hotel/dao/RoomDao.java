@@ -8,7 +8,7 @@ import com.hotel.entities.Room;
 
 public class RoomDao implements IRoomDao {
 
-	private List<Room> RoomDao = new ArrayList<>();
+	private List<Room> listRooms = new ArrayList<>();
 	
 	private static RoomDao roomsDao;
 
@@ -21,22 +21,22 @@ public class RoomDao implements IRoomDao {
 
 	@Override
 	public void addRoomToList(Room room) {
-		RoomDao.add(room);
+		listRooms.add(room);
 	}
 
 	@Override
 	public Room getRoomfromList(int id) {
-		return RoomDao.get(id);
+		return listRooms.get(id);
 	}
 
 	@Override
 	public void deleteRoomFromList(int id) {
-		RoomDao.remove(id);
+		listRooms.remove(id);
 	}
 
 	@Override
 	public List<Room> getAllListRooms() {
-		return RoomDao;
+		return listRooms;
 	}
 
 }

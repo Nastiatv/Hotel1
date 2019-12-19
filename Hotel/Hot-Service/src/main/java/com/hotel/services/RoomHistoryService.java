@@ -20,9 +20,8 @@ import com.hotel.enums.Status;
 
 public class RoomHistoryService implements IRoomHistoryService {
 
-	
-	private static final Logger logger =LoggerFactory.getLogger(RoomHistoryService.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(RoomHistoryService.class);
+
 	@Override
 	public void addRoomHistory(RoomHistory roomHistory) {
 		if (!getAllHistoryId().contains(roomHistory.getId())) {
@@ -60,7 +59,12 @@ public class RoomHistoryService implements IRoomHistoryService {
 		RoomHistoryDao.getInstance().addRoomHistory(new RoomHistory(idHistory, room, guest, checkInDate));
 		RoomHistoryDao.getInstance().getRoomHistory(idHistory).setStatus(Status.OCCUPIED);
 		room.setStatus(Status.OCCUPIED);
-		System.out.println("The room "+room.getId()+" is occupied by the client "+guest.getId());
+		String info = "The room ";
+		int gid = room.getId();
+		String info2 = " is occupied by the client ";
+		int rid = guest.getId();
+		logger.info(info, gid);
+		logger.info(info2, rid);
 	}
 
 	public void checkOut(int idHistory, LocalDate checkOutDate) {
@@ -68,8 +72,12 @@ public class RoomHistoryService implements IRoomHistoryService {
 		rh.setCheckOutDate(checkOutDate);
 		rh.setStatus(Status.FREE);
 		rh.getRoom().setStatus(Status.FREE);
-		logger.info("The client ",rh.getGuest().getId());
-		logger.info("has left the room ", rh.getRoom().getId());
+		String info = "The client ";
+		int gid = rh.getGuest().getId();
+		String info2 = "has left the room ";
+		int rid = rh.getRoom().getId();
+		logger.info(info, gid);
+		logger.info(info2, rid);
 		printFee(idHistory);
 	}
 
@@ -87,14 +95,19 @@ public class RoomHistoryService implements IRoomHistoryService {
 	}
 
 	public void printFee(int idRoomHistory) {
-		logger.info(String.format("Pay for accommodation: ", countRoomFee(idRoomHistory)));
-		logger.info(String.format(" and for service: ", RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory).getServiceFee()));
+		String info = "Pay for accommodation: ";
+		int roomFee = countRoomFee(idRoomHistory);
+		String info2 = " and for service: ";
+		int servieFee = RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory).getServiceFee();
+		logger.info(info, roomFee);
+		logger.info(info2, servieFee);
 	}
 
 	private void updateServiceFee(int idService, int idRoomHistory, LocalDate start, LocalDate end) {
 		RoomHistory rh = RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory);
 		if (rh.getServiceFee() == 0) {
-			int serviceFee = getDaysBetweenDates(start, end) * ServiceDao.getInstance().getServicefromList(idService).getDailyPrice();
+			int serviceFee = getDaysBetweenDates(start, end)
+					* ServiceDao.getInstance().getServicefromList(idService).getDailyPrice();
 			rh.setServiceFee(serviceFee);
 		} else {
 			int extraServiceFee = getDaysBetweenDates(start, end)
@@ -104,11 +117,13 @@ public class RoomHistoryService implements IRoomHistoryService {
 	}
 
 	private int countRoomFee(int idRoomHistory) {
-		return RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory).getRoom().getDailyPrice() * getDaysOfStay(idRoomHistory);
+		return RoomHistoryDao.getInstance().getRoomHistory(idRoomHistory).getRoom().getDailyPrice()
+				* getDaysOfStay(idRoomHistory);
 	}
 
 	private List<Integer> getAllHistoryId() {
-		return RoomHistoryDao.getInstance().getAllRoomHistories().stream().map(RoomHistory::getId).collect(Collectors.toList());
+		return RoomHistoryDao.getInstance().getAllRoomHistories().stream().map(RoomHistory::getId)
+				.collect(Collectors.toList());
 	}
 
 	private int getDaysBetweenDates(LocalDate start, LocalDate end) {

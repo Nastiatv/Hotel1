@@ -3,10 +3,15 @@ package com.hotel.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hotel.enums.Status;
 
 public class RoomHistory {
 
+	private static final Logger logger=LoggerFactory.getLogger(RoomHistory.class);
+	
 	private int id;
 	private Room room;
 	private Guest guest;
@@ -108,7 +113,8 @@ public class RoomHistory {
 			sb.append(checkOutDate);
 			sb.append(". Services: ");
 			sb.append(services);
-			System.out.println(sb);
+			String roomHistoryToString=sb.toString();
+			logger.info(roomHistoryToString);
 			return sb.toString();
 		
 	}

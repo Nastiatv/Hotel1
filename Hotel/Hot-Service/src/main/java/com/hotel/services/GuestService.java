@@ -2,10 +2,8 @@ package com.hotel.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.hotel.api.service.IGuestService;
 import com.hotel.dao.GuestDao;
 import com.hotel.entities.Guest;

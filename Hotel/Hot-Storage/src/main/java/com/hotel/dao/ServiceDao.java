@@ -8,7 +8,7 @@ import com.hotel.entities.Service;
 
 public class ServiceDao implements IServiceDao {
 
-	private static List<Service> serviceDao = new ArrayList<>();
+	private static List<Service> listService = new ArrayList<>();
 	
 	private static ServiceDao services;
 
@@ -21,21 +21,21 @@ public class ServiceDao implements IServiceDao {
 
 	@Override
 	public void addServiceToList(Service service) {
-		serviceDao.add(service);
+		listService.add(service);
 	}
 
 	@Override
 	public Service getServicefromList(int id) {
-		return serviceDao.get(id);
+		return listService.get(id);
 	}
 
 	@Override
 	public void deleteServiceFromList(int id) {
-		serviceDao.remove(id);
+		listService.remove(id);
 	}
 
 	@Override
 	public List<Service> getAllListService() {
-		return serviceDao;
+		return listService;
 	}
 }

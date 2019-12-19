@@ -1,7 +1,12 @@
 package com.hotel.entities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Guest {
 
+	private static final Logger logger =LoggerFactory.getLogger(Guest.class);
+	
 	private int id;
 
 	public Guest(int id) {
@@ -24,7 +29,8 @@ public class Guest {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Guest Id: ");
 		sb.append(id);
-		System.out.println(sb);
+		String guestToString=sb.toString();
+		logger.info(guestToString);
 		return sb.toString();
 	}
 }
