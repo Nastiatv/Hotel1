@@ -25,7 +25,7 @@ public class RoomDaoTest {
 		rooms = new ArrayList<>();
 		Room testRoom = createRoom(1);
 		rooms.add(testRoom);
-		Assert.assertTrue(testRoom== rooms.get(1));
+		Assert.assertTrue(testRoom== rooms.get(0));
 	}
 	
 	@Test

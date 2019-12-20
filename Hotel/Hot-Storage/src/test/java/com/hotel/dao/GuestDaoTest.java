@@ -24,7 +24,7 @@ public class GuestDaoTest {
 		guests = new ArrayList<>();
 		Guest testGuest = createGuest(1);
 		guests.add(testGuest);
-		Assert.assertTrue(testGuest== guests.get(1));
+		Assert.assertTrue(testGuest== guests.get(0));
 	}
 	
 	@Test

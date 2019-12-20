@@ -25,7 +25,7 @@ public class RoomHistoryDaoTest {
 		roomHistories = new ArrayList<>();
 		RoomHistory testRoomHistory = createRoomHistory(1);
 		roomHistories.add(testRoomHistory);
-		Assert.assertTrue(testRoomHistory== roomHistories.get(1));
+		Assert.assertTrue(testRoomHistory== roomHistories.get(0));
 	}
 	
 	@Test

@@ -25,7 +25,7 @@ public class ServiceDaoTest {
 		services = new ArrayList<>();
 		Service testService = createService(1);
 		services.add(testService);
-		Assert.assertTrue(testService== services.get(1));
+		Assert.assertTrue(testService== services.get(0));
 	}
 	
 	@Test
