@@ -1,3 +1,4 @@
+package com.hotel.dao;
 import java.util.ArrayList;
 import java.util.List;
 
