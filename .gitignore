@@ -44,3 +44,5 @@ hotel-derbergamotte/hotel-master/hotel_storage/.classpath
 hotel-derbergamotte/hotel-master/hotel_api/.project
 hotel-derbergamotte/hotel-master/hotel_service/.classpath
 hotel-derbergamotte/hotel-master/hotel_service/.project
+Hotel V2/hotel/mvnw
+*.cmd
