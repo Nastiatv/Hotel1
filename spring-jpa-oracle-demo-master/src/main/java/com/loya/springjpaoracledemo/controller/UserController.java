@@ -23,28 +23,28 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User addUser(@RequestBody User user) {
-        return this.userService.addUser(user);
+        return userService.addUser(user);
     }
 
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User updateUser(@PathVariable int id, @RequestBody User user ) {
-        return this.userService.updateUser(id, user);
+        return userService.updateUser(id, user);
     }
 
     @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable int id) {
-        return this.userService.getUserById(id);
+        return userService.getUserById(id);
     }
 
     @DeleteMapping(value = "/")
     public void deleteAllUsers() {
-        this.userService.deleteAllUsers();
+        userService.deleteAllUsers();
     }
 
     @DeleteMapping(value = "/{id}")
     public void deleteUser(@PathVariable int id) {
-        this.userService.deleteUserById(id);
+        userService.deleteUserById(id);
     }
 
    
