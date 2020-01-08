@@ -4,11 +4,11 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "USER_TABLE")
+@Table(name = "user_table")
 public class User {
     @Column(name = "ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "USER_NAME", nullable = true, length = 255)
