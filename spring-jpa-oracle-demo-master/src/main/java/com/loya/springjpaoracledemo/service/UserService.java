@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.loya.springjpaoracledemo.api.IUserDao;
 import com.loya.springjpaoracledemo.api.IUserService;
+import com.loya.springjpaoracledemo.api.dto.UserDto;
+import com.loya.springjpaoracledemo.api.service.IUserDao;
 import com.loya.springjpaoracledemo.entity.User;
 
 @Service
@@ -17,15 +18,16 @@ public class UserService implements IUserService {
 	@Autowired
 	IUserDao userDao;
 
-	public List<User> getAllUsers() {
-		return this.userDao.findAll();
+	public List<UserDto> getAllUsers() {
+		return UserDto.convertList(userDao.findAll());
 	}
 
-	public User addUser(User user) {
-		return this.userDao.save(user);
+	public User addUser(UserDto userDto) {
+		User user=new User();
+		user.setName(userDto.getName());
+		user.setSalary(userDto.getSalary());
+		return userDao.save(user);
 	}
-
-	// other methods go here
 
 	public Optional<User> getUserById(int id) {
 		return this.userDao.findById(id);
@@ -53,5 +55,11 @@ public class UserService implements IUserService {
 
 	private User getUserByUserId(int id) {
 		return userDao.findAll().stream().filter(u -> u.getId().equals(id)).collect(Collectors.toList()).get(0);
+	}
+
+	@Override
+	public User addUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

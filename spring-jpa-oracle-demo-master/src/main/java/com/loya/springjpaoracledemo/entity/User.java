@@ -23,7 +23,7 @@ public class User {
         this.salary = salary;
     }
     
-    protected User() {
+    public User() {
     }
 
 
