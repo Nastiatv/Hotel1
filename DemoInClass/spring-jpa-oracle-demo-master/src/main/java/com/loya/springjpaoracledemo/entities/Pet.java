@@ -2,6 +2,9 @@ package com.loya.springjpaoracledemo.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +16,10 @@ public class Pet extends AEntity {
 
     @Column(name = "type", length = 45)
     private String type;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     public Pet() {
     	
@@ -37,5 +44,13 @@ public class Pet extends AEntity {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

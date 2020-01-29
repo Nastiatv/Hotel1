@@ -31,16 +31,16 @@ public class UserService implements IUserService {
 		return userDao.create(user);
 	}
 
-	public User getUserById(int id) {
-		return userDao.get(id);
+	public UserDto getUserById(int id) {
+		return UserDto.entityToDto(userDao.get(id));
 	}
 
-	public User getByName(String userName) {
-		return userDao.getByName(userName);
+	public UserDto getByName(String userName) {
+		return UserDto.entityToDto(userDao.getByName(userName));
 	}
 	
 	public void updateUser(int id, UserDto userDto) {
-		User user = getUserById(id);
+		User user = userDao.get(id);
 		if (!StringUtils.isEmpty(userDto.getName())) {
 			user.setName(user.getName());
 		}
@@ -51,6 +51,6 @@ public class UserService implements IUserService {
 	}
 
 	public void delete(int id) {
-		userDao.delete(getUserById(id));
+		userDao.delete(userDao.get(id));
 	}
 }

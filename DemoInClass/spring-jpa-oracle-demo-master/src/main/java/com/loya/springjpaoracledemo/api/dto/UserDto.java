@@ -1,7 +1,7 @@
 package com.loya.springjpaoracledemo.api.dto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.loya.springjpaoracledemo.entities.User;
 
@@ -11,8 +11,28 @@ public class UserDto extends ADto {
 
 	private Integer salary;
 
+	private List<PetDto> pets;
+
 	public static List<UserDto> convertList(List<User> entities) {
-		return entities.stream().map(UserDto::new).collect(Collectors.toList());
+		List<UserDto> users = new ArrayList<>();
+		for (User entity : entities) {
+			UserDto dto = new UserDto();
+			dto.setId(entity.getId());
+			dto.setName(entity.getName());
+			dto.setSalary(entity.getSalary());
+			dto.setPets(PetDto.convertList(entity.getPets()));
+			users.add(dto);
+		}
+		return users;
+	}
+
+	public static UserDto entityToDto(User entity) {
+		UserDto dto = new UserDto();
+		dto.setId(entity.getId());
+		dto.setName(entity.getName());
+		dto.setSalary(entity.getSalary());
+		dto.setPets(PetDto.convertList(entity.getPets()));
+		return dto;
 	}
 
 	public UserDto() {
@@ -23,6 +43,7 @@ public class UserDto extends ADto {
 		this.id = user.getId();
 		this.name = user.getName();
 		this.salary = user.getSalary();
+		this.pets = PetDto.convertList(user.getPets());
 	}
 
 	public String getName() {
@@ -39,5 +60,13 @@ public class UserDto extends ADto {
 
 	public void setSalary(Integer salary) {
 		this.salary = salary;
+	}
+
+	public List<PetDto> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<PetDto> pets) {
+		this.pets = pets;
 	}
 }

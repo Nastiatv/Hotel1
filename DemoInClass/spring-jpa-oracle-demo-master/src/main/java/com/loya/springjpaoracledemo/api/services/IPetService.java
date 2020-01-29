@@ -1,18 +1,21 @@
 package com.loya.springjpaoracledemo.api.services;
 
+import java.util.List;
+
 import com.loya.springjpaoracledemo.api.dto.PetDto;
-import com.loya.springjpaoracledemo.entities.Pet;
 
 public interface IPetService {
 
-//	public List<PetDto> getAllPets();
+	public List<PetDto> getAllPets();
 
-	Pet addPet(PetDto userDto);
+	PetDto addPet(PetDto userDto);
 
-	Pet getPetById(int id);
+	PetDto getPetById(int id);
 
-	Pet updatePet(int id, Pet user);
+	void updatePet(int id, PetDto petDto);
 
 	void delete(int id);
+	
+	PetDto addUserToPet(int petId, int userId);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.loya.springjpaoracledemo.api.dao.IUserDao;
 import com.loya.springjpaoracledemo.entities.User;
+import com.loya.springjpaoracledemo.entities.User_;
 
 @Repository
 public class UserDao extends AGenericDao<User> implements IUserDao {
@@ -23,7 +24,7 @@ public class UserDao extends AGenericDao<User> implements IUserDao {
 			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
 			Root<User> root = query.from(User.class);
-			query.select(root).where(criteriaBuilder.equal(root.get("userName"), userName));
+			query.select(root).where(criteriaBuilder.equal(root.get(User_.NAME), userName));
 			TypedQuery<User> result = entityManager.createQuery(query);
 			return result.getSingleResult();
 		} catch (NoResultException e) {

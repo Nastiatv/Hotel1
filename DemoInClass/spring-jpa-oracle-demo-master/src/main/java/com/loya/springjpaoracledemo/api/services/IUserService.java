@@ -11,9 +11,9 @@ public interface IUserService {
 
 	User addUser(UserDto userDto);
 
-	User getUserById(int id);
+	UserDto getUserById(int id);
 	
-	User getByName(String userName);
+	UserDto getByName(String userName);
 
 	void updateUser(int id, UserDto userDto);
 
