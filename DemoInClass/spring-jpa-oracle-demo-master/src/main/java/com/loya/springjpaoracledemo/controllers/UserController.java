@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.loya.springjpaoracledemo.api.dto.PetDto;
 import com.loya.springjpaoracledemo.api.dto.UserDto;
 import com.loya.springjpaoracledemo.api.services.IPetService;
 import com.loya.springjpaoracledemo.api.services.IUserService;
@@ -35,7 +33,6 @@ public class UserController {
 	public ModelAndView getAllUsers() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<UserDto> users = userService.getAllUsers();
-		List<PetDto> pets = petService.getAllPets();
 		modelAndView.setViewName("users");
 		modelAndView.addObject("userList", users);
 		return modelAndView;
